@@ -1,31 +1,11 @@
-const getTodos = (callback) => {
-
-    const request = new XMLHttpRequest();
-
-    request.addEventListener('readystatechange', () => {
-        
-        if (request.readyState === 4 && request.status === 200) {
-            const data = JSON.parse(request.responseText);
-            callback(undefined, data);
-        } else if(request.readyState === 4) {
-            callback('could not fetch data', undefined);
-        }
-    })
-    
-    request.open('GET', 'https://jsonplaceholder.typicode.com/todos/');
-    request.send();
-};
-
-getTodos((err, data) => { //Il y a une fonction en paramètre ici
-    console.log('callback fired')
-  
-    if(err) {
-        console.log(err);
-    } else {
-        console.log(data);
-    }
-});
 
 
 
- 
+ fetch('todos/luigi.json').then((response) => {
+     console.log('resolved', response);
+      return response.json(); //return promise
+ }).then(data => {
+     console.log(data);
+ }).catch(err => {
+     console.log('rejected', err);
+ })
