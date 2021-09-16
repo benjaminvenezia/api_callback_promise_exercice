@@ -1,4 +1,4 @@
-const getTodos = (callback) => {
+const getTodos = (resource, callback) => {
 
     const request = new XMLHttpRequest();
 
@@ -12,18 +12,18 @@ const getTodos = (callback) => {
         }
     })
     
-    request.open('GET', 'https://jsonplaceholder.typicode.com/todos/');
+    request.open('GET', resource);
     request.send();
 };
-
-getTodos((err, data) => { //Il y a une fonction en paramètre ici
-    console.log('callback fired')
-  
-    if(err) {
-        console.log(err);
-    } else {
+/* Cela s'appelle un callback hell, c'est une mauvaise pratique, car le code et peu lisible et peu scalable. */
+getTodos('todos/luigi.json', (err, data) => { //Il y a une fonction en paramètre ici
+    console.log(data);
+    getTodos('todos/mario.json',(err, data) => {
         console.log(data);
-    }
+        getTodos('todos/benjamin.json', (err, data) => {
+            console.log(data);
+        });
+    });
 });
 
 
