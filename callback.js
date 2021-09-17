@@ -1,31 +1,15 @@
-const getTodos = (callback) => {
-
-    const request = new XMLHttpRequest();
-
-    request.addEventListener('readystatechange', () => {
-        
-        if (request.readyState === 4 && request.status === 200) {
-            const data = JSON.parse(request.responseText);
-            callback(undefined, data);
-        } else if(request.readyState === 4) {
-            callback('could not fetch data', undefined);
-        }
-    })
+const getTodos = async () => {
+    const response = await fetch('todos/luigi.son');
     
-    request.open('GET', 'https://jsonplaceholder.typicode.com/todos/');
-    request.send();
-};
-
-getTodos((err, data) => { //Il y a une fonction en paramètre ici
-    console.log('callback fired')
-  
-    if(err) {
-        console.log(err);
-    } else {
-        console.log(data);
+    if(response.status !== 200){
+        throw new Error('cannot fetch the data');
     }
-});
 
+    const data = await response.json();
 
+    return data;
+}
 
- 
+getTodos()
+.then(data => console.log('resolved: ', data))
+.catch(err => console.log('rejected:', err.message));
