@@ -1,17 +1,15 @@
-class Hello extends React.Component {
-
-    
+class Piechart extends React.Component {
 
     render() {
+        const props = this.props;
+        let message = '';
 
-       
-        let bangs= "!".repeat(this.props.bangs);
+        props.s1 === props.s2 && props.s2 === props.s3 ? message = 'You win!' : message = 'You loose.';
 
-        console.log(this.props);
         return (
             <div>
-                <p>Hello {this.props.from} to {this.props.to} {bangs} </p>
-        
+                <p> {props.s1} - {props.s2} - {props.s3} </p>
+                <p>{ message }</p>
             </div>
         );
     }

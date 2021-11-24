@@ -3,7 +3,10 @@ class App extends React.Component
     render() {
         return (
             <div>
-                <PieChart />
+                <Piechart s1="🍋" s2="🍋" s3="🍋" />
+                <Piechart s1="🍎" s2="🍏" s3="🍏" />
+                <Piechart s1="🍎" s2="🍋" s3="🍏" />
+                <Piechart s1="🍎" s2="🍎" s3="🍎" />
             </div>
         );
     }
