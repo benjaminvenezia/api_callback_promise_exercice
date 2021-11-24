@@ -1,4 +1,4 @@
-class Piechart extends React.Component {
+class SlotMachine extends React.Component {
 
     render() {
         const props = this.props;
